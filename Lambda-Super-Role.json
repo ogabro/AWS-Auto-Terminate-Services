@@ -1,0 +1,23 @@
+// AWS Super role for "AWS Lambda Service" that is trying to automate the closure of services before incuring costs
+// This doesn't follow the "Least Privilege Model" and is not recommended for root users.
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:StopInstances",
+        "rds:StopDBInstance",
+        "redshift:DeleteCluster",
+        "elasticache:DeleteCacheCluster",
+        "elasticloadbalancing:DeleteLoadBalancer",
+        "elasticbeanstalk:*",
+        "lambda:InvokeFunction",
+        "s3:ListBucket",
+        "s3:DeleteObject"
+        // Add other actions for additional services as needed
+      ],
+      "Resource": "*"
+    }
+  ]
+}
